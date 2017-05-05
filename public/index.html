@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Firebase</title>
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/3.7.6/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/3.7.6/firebase-auth.js"></script>
+    <script defer src="/__/firebase/3.7.6/firebase-database.js"></script>
+    <script defer src="/__/firebase/3.7.6/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/3.7.6/firebase-storage.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+
+    <style media="screen">
+      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
+      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
+      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
+      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
+      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
+      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
+      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
+      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
+      @media (max-width: 600px) {
+        body, #message { margin-top: 0; background: white; box-shadow: none; }
+        body { border-top: 16px solid #ffa100; }
+      }
+    </style>
+      <!-- AngularJS -->
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+      <!-- Firebase -->
+      <script src="https://www.gstatic.com/firebasejs/3.6.6/firebase.js"></script>
+      <!-- AngularFire -->
+      <script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
+      
+      <script src="app.js"></script>
+  </head>
+  <body ng-app="app" >
+   
+    <div ng-controller="MyCtrl as ctrl" style="display:none">
+                  <ul>
+      <li ng-repeat="x in ctrl.users">
+       name : {{x.name}} ({{x.age}})
+        <!--{{x | json}}-->
+      </li>
+      </ul>
+
+        <form ng-submit="ctrl.addUser()"  name="adduser" novalidate>
+          name : <input type="text" ng-model="ctrl.newuser.name" required> <br>
+          age : <input type="number" ng-model="ctrl.newuser.age" required> <br>
+          <!--{{ctrl.newuser}}-->
+          <button type="submit" ng-disabled="!adduser.$valid"> Add User</button>
+        </form>
+
+    </div>
+
+    <div ng-controller="ChatCtrl as vm">
+      <h1>user : {{vm.user}}</h1>
+      <ul class="chatbox">
+        <li ng-repeat="message in vm.messages">{{ message.from }}: {{ message.content }}</li>
+      </ul>
+      <form ng-submit="vm.addMessage()">
+        <input type="text" ng-model="vm.message">
+        <input type="submit" value="Add Message">
+      </form>
+    </div>
+    
+    <script>
+      // document.addEventListener('DOMContentLoaded', function() {
+      //   // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+      //   // // The Firebase SDK is initialized and available here!
+      //   //
+      //   // firebase.auth().onAuthStateChanged(user => { });
+      //   // firebase.database().ref('/path/to/ref').on('data', snapshot => { });
+      //   // firebase.messaging().requestPermission().then(() => { });
+      //   // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
+      //   //
+      //   // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+
+      //   try {
+      //     let app = firebase.app();
+      //     let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
+      //     document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
+      //   } catch (e) {
+      //     console.error(e);
+      //     document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
+      //   }
+      // });
+    </script>
+  </body>
+</html>
